@@ -83,10 +83,8 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cashierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashierActionPerformed
-        // TODO add your handling code here:
-        
-        
-        
+       mainScreen.setVisible(false);
+       
     }//GEN-LAST:event_cashierActionPerformed
 
     /**
