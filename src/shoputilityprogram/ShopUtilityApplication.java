@@ -45,6 +45,8 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
         unitPriceOfAddProduct = new javax.swing.JTextField();
         supplierPriceOfProduct = new javax.swing.JTextField();
         nameOfAddProduct = new javax.swing.JTextField();
+        supplierPriceOfProduct1 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
         products = new javax.swing.JPanel();
         apple = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
@@ -84,7 +86,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
         cashier = new javax.swing.JButton();
         invManager = new javax.swing.JButton();
 
-        addNewProductWindow.setPreferredSize(new java.awt.Dimension(350, 500));
+        addNewProductWindow.setPreferredSize(new java.awt.Dimension(365, 500));
 
         addNewProduct.setPreferredSize(new java.awt.Dimension(350, 500));
 
@@ -121,10 +123,25 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
         });
 
         minStockOfAddProduct.setPreferredSize(new java.awt.Dimension(44, 20));
+        minStockOfAddProduct.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                minStockOfAddProductKeyTyped(evt);
+            }
+        });
 
         unitPriceOfAddProduct.setPreferredSize(new java.awt.Dimension(44, 20));
+        unitPriceOfAddProduct.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                unitPriceOfAddProductKeyTyped(evt);
+            }
+        });
 
         supplierPriceOfProduct.setPreferredSize(new java.awt.Dimension(44, 20));
+        supplierPriceOfProduct.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                supplierPriceOfProductKeyTyped(evt);
+            }
+        });
 
         nameOfAddProduct.setPreferredSize(new java.awt.Dimension(44, 20));
         nameOfAddProduct.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -132,6 +149,16 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
                 nameOfAddProductKeyTyped(evt);
             }
         });
+
+        supplierPriceOfProduct1.setPreferredSize(new java.awt.Dimension(44, 20));
+        supplierPriceOfProduct1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                supplierPriceOfProduct1KeyTyped(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("Department:");
 
         javax.swing.GroupLayout addNewProductLayout = new javax.swing.GroupLayout(addNewProduct);
         addNewProduct.setLayout(addNewProductLayout);
@@ -150,14 +177,6 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
                         .addGap(133, 133, 133)
                         .addComponent(unitPriceOfAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addNewProductLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel5)
-                        .addGap(105, 105, 105)
-                        .addComponent(supplierPriceOfProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(addNewProductLayout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(done, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(addNewProductLayout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addComponent(addYourProduct))
                     .addGroup(addNewProductLayout.createSequentialGroup()
@@ -168,8 +187,21 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
                         .addGap(142, 142, 142)
                         .addGroup(addNewProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nameOfAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(amountOfAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                            .addComponent(amountOfAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(addNewProductLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(addNewProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel8))
+                        .addGap(105, 105, 105)
+                        .addGroup(addNewProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(supplierPriceOfProduct1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(supplierPriceOfProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(30, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addNewProductLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(done, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(129, 129, 129))
         );
         addNewProductLayout.setVerticalGroup(
             addNewProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +212,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
                 .addGroup(addNewProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(nameOfAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
+                .addGap(11, 11, 11)
                 .addGroup(addNewProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addNewProductLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
@@ -202,9 +234,13 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
                 .addGroup(addNewProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(supplierPriceOfProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
+                .addGap(11, 11, 11)
+                .addGroup(addNewProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(supplierPriceOfProduct1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addComponent(done, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout addNewProductWindowLayout = new javax.swing.GroupLayout(addNewProductWindow.getContentPane());
@@ -213,15 +249,15 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
             addNewProductWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addNewProductWindowLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(addNewProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(addNewProduct, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                .addContainerGap())
         );
         addNewProductWindowLayout.setVerticalGroup(
             addNewProductWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addNewProductWindowLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(addNewProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(addNewProduct, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -563,7 +599,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
 
     private void addNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewActionPerformed
         addNewProductWindow.show();
-        addNewProductWindow.setSize(380, 450);
+        addNewProductWindow.setSize(addNewProductWindow.getPreferredSize());
         addNewProduct.setVisible(true);
         
     }//GEN-LAST:event_addNewActionPerformed
@@ -583,20 +619,48 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_doneActionPerformed
 
     private void nameOfAddProductKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameOfAddProductKeyTyped
-        char caracter = evt.getKeyChar();
-                if (((caracter < '0') || (caracter > '9'))
-                        && (caracter != '\b')) {
-                    evt.consume();
-                }
+        char ch = evt.getKeyChar();
+        if(Character.isAlphabetic(ch)||Character.isSpace(ch)){
+        }else{
+            evt.consume();
+        }
     }//GEN-LAST:event_nameOfAddProductKeyTyped
 
     private void amountOfAddProductKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountOfAddProductKeyTyped
-        char caracter = evt.getKeyChar();
-                if (((caracter < '0') || (caracter > '9'))
-                        && (caracter != '\b')) {
+        char character = evt.getKeyChar();
+                if (((character < '0') || (character > '9'))
+                        && (character != '\b')) {
                     evt.consume();
                 }
     }//GEN-LAST:event_amountOfAddProductKeyTyped
+
+    private void minStockOfAddProductKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_minStockOfAddProductKeyTyped
+        char character = evt.getKeyChar();
+                if (((character < '0') || (character > '9'))
+                        && (character != '\b')) {
+                    evt.consume();
+                }
+    }//GEN-LAST:event_minStockOfAddProductKeyTyped
+
+    private void unitPriceOfAddProductKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_unitPriceOfAddProductKeyTyped
+        char character = evt.getKeyChar();
+                if (((character < '0') || (character > '9'))
+                        && (character != '\b')) {
+                    evt.consume();
+                }
+    }//GEN-LAST:event_unitPriceOfAddProductKeyTyped
+
+    private void supplierPriceOfProductKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_supplierPriceOfProductKeyTyped
+        char character = evt.getKeyChar();
+                if (((character < '0') || (character > '9'))
+                        && (character != '\b')) {
+                    evt.consume();
+                }
+    }//GEN-LAST:event_supplierPriceOfProductKeyTyped
+
+    private void supplierPriceOfProduct1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_supplierPriceOfProduct1KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_supplierPriceOfProduct1KeyTyped
 
     
     
@@ -634,6 +698,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
                 
             }
         });
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addNew;
@@ -682,11 +747,13 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel mainScreen;
     private javax.swing.JTextField minStockOfAddProduct;
     private javax.swing.JTextField nameOfAddProduct;
     private javax.swing.JPanel products;
     private javax.swing.JTextField supplierPriceOfProduct;
+    private javax.swing.JTextField supplierPriceOfProduct1;
     private javax.swing.JTextField unitPriceOfAddProduct;
     // End of variables declaration//GEN-END:variables
 }
