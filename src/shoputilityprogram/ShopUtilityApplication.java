@@ -37,11 +37,11 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         done = new javax.swing.JButton();
-        nameOfAddedProduct = new javax.swing.JTextField();
         amountOfAddProduct = new javax.swing.JTextField();
         minStock = new javax.swing.JTextField();
         unitPriceOfAddProduct = new javax.swing.JTextField();
         supplierPriceOfProduct = new javax.swing.JTextField();
+        nameOfAddProduct = new javax.swing.JTextField();
         products = new javax.swing.JPanel();
         apple = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
@@ -110,8 +110,6 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
             }
         });
 
-        nameOfAddedProduct.setPreferredSize(new java.awt.Dimension(44, 20));
-
         amountOfAddProduct.setPreferredSize(new java.awt.Dimension(44, 20));
 
         minStock.setPreferredSize(new java.awt.Dimension(44, 20));
@@ -120,22 +118,14 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
 
         supplierPriceOfProduct.setPreferredSize(new java.awt.Dimension(44, 20));
 
+        nameOfAddProduct.setPreferredSize(new java.awt.Dimension(44, 20));
+
         javax.swing.GroupLayout addNewProductLayout = new javax.swing.GroupLayout(addNewProduct);
         addNewProduct.setLayout(addNewProductLayout);
         addNewProductLayout.setHorizontalGroup(
             addNewProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addNewProductLayout.createSequentialGroup()
                 .addGroup(addNewProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addNewProductLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel2)
-                        .addGap(158, 158, 158)
-                        .addComponent(nameOfAddedProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(addNewProductLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel3)
-                        .addGap(142, 142, 142)
-                        .addComponent(amountOfAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addNewProductLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(jLabel7)
@@ -156,7 +146,16 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
                         .addComponent(done, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addNewProductLayout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addComponent(addYourProduct)))
+                        .addComponent(addYourProduct))
+                    .addGroup(addNewProductLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(addNewProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(142, 142, 142)
+                        .addGroup(addNewProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nameOfAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(amountOfAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         addNewProductLayout.setVerticalGroup(
@@ -164,13 +163,11 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
             .addGroup(addNewProductLayout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addComponent(addYourProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addGroup(addNewProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addNewProductLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jLabel2))
-                    .addComponent(nameOfAddedProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addGap(33, 33, 33)
+                .addGroup(addNewProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(nameOfAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addGroup(addNewProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addNewProductLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
@@ -201,11 +198,17 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
         addNewProductWindow.getContentPane().setLayout(addNewProductWindowLayout);
         addNewProductWindowLayout.setHorizontalGroup(
             addNewProductWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(addNewProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(addNewProductWindowLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(addNewProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addNewProductWindowLayout.setVerticalGroup(
             addNewProductWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(addNewProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(addNewProductWindowLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(addNewProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -533,6 +536,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
 
     private void cashierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashierActionPerformed
        mainScreen.setVisible(false);
+       products.setVisible(true);
     }//GEN-LAST:event_cashierActionPerformed
 
     private void invManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invManagerActionPerformed
@@ -557,6 +561,11 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_goBackActionPerformed
 
     private void doneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneActionPerformed
+        nameOfAddProduct.getText();
+        amountOfAddProduct.getText();
+        minStock.getText();
+        unitPriceOfAddProduct.getText();
+        supplierPriceOfProduct.getText();
         addNewProductWindow.setVisible(false);
     }//GEN-LAST:event_doneActionPerformed
 
@@ -646,7 +655,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel mainScreen;
     private javax.swing.JTextField minStock;
-    private javax.swing.JTextField nameOfAddedProduct;
+    private javax.swing.JTextField nameOfAddProduct;
     private javax.swing.JPanel products;
     private javax.swing.JTextField supplierPriceOfProduct;
     private javax.swing.JTextField unitPriceOfAddProduct;
