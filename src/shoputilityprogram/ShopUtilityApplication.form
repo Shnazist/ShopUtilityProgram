@@ -46,7 +46,7 @@
                               <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="76" pref="76" max="-2" attributes="0"/>
-                              <Component id="minStock" min="-2" pref="70" max="-2" attributes="0"/>
+                              <Component id="minStockOfAddProduct" min="-2" pref="70" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
@@ -109,7 +109,7 @@
                               <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="minStock" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="minStockOfAddProduct" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -194,8 +194,11 @@
                   <Dimension value="[44, 20]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="amountOfAddProductKeyTyped"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="minStock">
+            <Component class="javax.swing.JTextField" name="minStockOfAddProduct">
               <Properties>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[44, 20]"/>
@@ -222,6 +225,9 @@
                   <Dimension value="[44, 20]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nameOfAddProductKeyTyped"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
