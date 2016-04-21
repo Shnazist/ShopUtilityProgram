@@ -4,16 +4,7 @@
  */
 package shoputilityprogram;
 
-/**
- *
- * @author ahmei8766
- */
 public class ShopUtilityProgram {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+    
+    
 }
