@@ -45,8 +45,9 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
         unitPriceOfAddProduct = new javax.swing.JTextField();
         supplierPriceOfProduct = new javax.swing.JTextField();
         nameOfAddProduct = new javax.swing.JTextField();
-        supplierPriceOfProduct1 = new javax.swing.JTextField();
+        departmentOfAddProduct = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        departmentHelp = new javax.swing.JLabel();
         products = new javax.swing.JPanel();
         apple = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
@@ -150,15 +151,19 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
             }
         });
 
-        supplierPriceOfProduct1.setPreferredSize(new java.awt.Dimension(44, 20));
-        supplierPriceOfProduct1.addKeyListener(new java.awt.event.KeyAdapter() {
+        departmentOfAddProduct.setPreferredSize(new java.awt.Dimension(44, 20));
+        departmentOfAddProduct.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                supplierPriceOfProduct1KeyTyped(evt);
+                departmentOfAddProductKeyTyped(evt);
             }
         });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Department:");
+
+        departmentHelp.setForeground(new java.awt.Color(255, 255, 224));
+        departmentHelp.setText("?");
+        departmentHelp.setToolTipText("This is refering to the food departments in the store. Bakery, Dairy, Meat, Sea Food, Frozen, Canned Food, Utilities, Beverages and Dry food");
 
         javax.swing.GroupLayout addNewProductLayout = new javax.swing.GroupLayout(addNewProduct);
         addNewProduct.setLayout(addNewProductLayout);
@@ -192,14 +197,17 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addGroup(addNewProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel8))
-                        .addGap(105, 105, 105)
+                            .addGroup(addNewProductLayout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(departmentHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(87, 87, 87)
                         .addGroup(addNewProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(supplierPriceOfProduct1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(departmentOfAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(supplierPriceOfProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addNewProductLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(done, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(129, 129, 129))
         );
@@ -236,8 +244,9 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addGap(11, 11, 11)
                 .addGroup(addNewProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(supplierPriceOfProduct1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
+                    .addComponent(departmentOfAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(departmentHelp))
                 .addGap(18, 18, 18)
                 .addComponent(done, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(40, Short.MAX_VALUE))
@@ -658,9 +667,13 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
                 }
     }//GEN-LAST:event_supplierPriceOfProductKeyTyped
 
-    private void supplierPriceOfProduct1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_supplierPriceOfProduct1KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_supplierPriceOfProduct1KeyTyped
+    private void departmentOfAddProductKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_departmentOfAddProductKeyTyped
+        char ch = evt.getKeyChar();
+        if(Character.isAlphabetic(ch)||Character.isSpace(ch)){
+        }else{
+            evt.consume();
+        }
+    }//GEN-LAST:event_departmentOfAddProductKeyTyped
 
     
     
@@ -708,6 +721,8 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     private javax.swing.JTextField amountOfAddProduct;
     private javax.swing.JButton apple;
     private javax.swing.JButton cashier;
+    private javax.swing.JLabel departmentHelp;
+    private javax.swing.JTextField departmentOfAddProduct;
     private javax.swing.JButton done;
     private javax.swing.JButton goBack;
     private javax.swing.JButton invManager;
@@ -753,7 +768,6 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     private javax.swing.JTextField nameOfAddProduct;
     private javax.swing.JPanel products;
     private javax.swing.JTextField supplierPriceOfProduct;
-    private javax.swing.JTextField supplierPriceOfProduct1;
     private javax.swing.JTextField unitPriceOfAddProduct;
     // End of variables declaration//GEN-END:variables
 }
