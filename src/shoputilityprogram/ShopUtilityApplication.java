@@ -548,7 +548,6 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
 
     private void addNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewActionPerformed
         addNewProductWindow.show();
-        addNewProductWindow.setSize(350, 400); 
         addNewProductWindow.setSize(350, 400);
         addNewProduct.setVisible(true);
         
