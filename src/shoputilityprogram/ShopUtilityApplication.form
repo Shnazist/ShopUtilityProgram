@@ -23,7 +23,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="addNewProduct" pref="448" max="32767" attributes="0"/>
+                  <Component id="addNewProduct" pref="468" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -279,7 +279,7 @@
                   <Color blue="e0" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="?"/>
-                <Property name="toolTipText" type="java.lang.String" value="This is refering to the food departments in the store. Bakery, Dairy, Meat, Sea Food, Frozen, Canned Food, Utilities, Beverages and Dry food"/>
+                <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;This is refering to the food departments in the store.&#xa;&lt;br&gt;&#xa;Bakery, Dairy, Meat, Sea Food, Frozen, Canned Food, Utilities, Beverages and Dry food&#xa;&lt;html/&gt;"/>
               </Properties>
             </Component>
           </SubComponents>

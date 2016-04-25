@@ -5,6 +5,8 @@
 //april 25 morning time Islam
 package shoputilityprogram;
 
+import javax.swing.ToolTipManager;
+
 
 /**
  *
@@ -164,7 +166,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
 
         departmentHelp.setForeground(new java.awt.Color(255, 255, 224));
         departmentHelp.setText("?");
-        departmentHelp.setToolTipText("This is refering to the food departments in the store. Bakery, Dairy, Meat, Sea Food, Frozen, Canned Food, Utilities, Beverages and Dry food");
+        departmentHelp.setToolTipText("<html>\nThis is refering to the food departments in the store.\n<br>\nBakery, Dairy, Meat, Sea Food, Frozen, Canned Food, Utilities, Beverages and Dry food\n<html/>");
 
         javax.swing.GroupLayout addNewProductLayout = new javax.swing.GroupLayout(addNewProduct);
         addNewProduct.setLayout(addNewProductLayout);
@@ -266,7 +268,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
             addNewProductWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addNewProductWindowLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(addNewProduct, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                .addComponent(addNewProduct, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -608,6 +610,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_appleActionPerformed
 
     private void addNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewActionPerformed
+        ToolTipManager.sharedInstance().setDismissDelay(15000);
         addNewProductWindow.show();
         addNewProductWindow.setSize(addNewProductWindow.getPreferredSize());
         addNewProduct.setVisible(true);
