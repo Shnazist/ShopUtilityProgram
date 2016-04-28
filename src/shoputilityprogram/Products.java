@@ -182,7 +182,7 @@ public class Products {
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
-    private void initComponents() {
+        private void initComponents() {
 
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -209,3 +209,21 @@ public class Products {
                 .addGap(189, 189, 189))
         );
         layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 402, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>                        
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JButton jButton3;
+    private javax.swing.JList jList1;
+    private javax.swing.JScrollPane jScrollPane1;
+    // End of variables declaration                   
+}
