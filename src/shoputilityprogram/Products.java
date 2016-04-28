@@ -4,6 +4,7 @@
  */
 package shoputilityprogram;
 
+import java.awt.List;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -36,14 +37,20 @@ public class Products {
     //the number of products ahead of it in the text file
     int ProductNumber;
     
-    //uses the name to find an product already in the text file
+    //2D array list to keep track of all the product for rewriting and editing
+    private static ArrayList<ArrayList<String>> products = new ArrayList<ArrayList<String>>();
+    
+    //number of relavent numbers/values used for each product in the Products.txt file, these being name, supplier price, stock, etc
+    static int valuesPerProduct = 5;
+    
+    //uses the name as the sole input to find an product already in the text file
     public Products(String n) throws FileNotFoundException{
         findProducts();
         name=n;
         findValuesForProduct();
     }
     
-    //name, supplier price, unit price, stock
+    //name, supplier price, unit price, stock, assumes minAmount is zero
     public Products(String n, double sp, double up, int s) throws IOException{
         findProducts();
         name=n;
@@ -90,11 +97,7 @@ public class Products {
     //finds an estimate of the asset price of all the specific product in stock
     public double assetEvaluation(){
         return (stock*(unitPrice+supplierPrice)/2);
-    }
-    
-    //2D array list to keep track of all the product for rewriting and editing
-    private static ArrayList<ArrayList<String>> products = new ArrayList<ArrayList<String>>();
-    
+    }    
     
     //this function index's all the products and there properties in the text file 'Products.txt'
     //index's to the 2D arraylist 'products'
@@ -105,21 +108,11 @@ public class Products {
         while(s.hasNext()){
             ArrayList<String> x = new ArrayList<String>();
             
-            //name
+            //this for loop adds all the product information to the arraylist x
+            for(int i = 0; i<ProductNumber; i++){
             x.add(s.next());
-            
-            //amount
-            x.add(s.next());
-            
-            //minimum amount
-            x.add(s.next());
-            
-            //unit price
-            x.add(s.next());
-            
-            //supplier price
-            x.add(s.next());
-            
+            }
+            //add the individual product information to array Products using list x as a of middle step/proxy
             products.add(x);
         }
     }
@@ -155,7 +148,7 @@ public class Products {
         }
     }
     
-    public void publishProduct(){
+    public void publishProduct() throws FileNotFoundException{
         ArrayList<String> y = new ArrayList<String>();
         y.add(name);
         y.add(""+stock);
@@ -167,16 +160,21 @@ public class Products {
         File file = new File("Products.txt");
         	
     		if(file.delete()){
-    			System.out.println(file.getName() + " is deleted!");
     		}else{
     			System.out.println("Delete operation is failed.");
     		}
         
-        FileReader reader = new FileReader("Products.txt");
-        Scanner s = new Scanner(reader);
-                
+        PrintWriter writer = new PrintWriter("Products.txt");
+        
         for(int i=0; i<products.size(); i++){
+            //temperary string and list to hold the values for the specific product before it is writen to the text file
+            String temp = "";
+            ArrayList<String> tempList = products.get(i);
             
+            //the proccess for writing to the text file for one product
+            for(int j=0; j<valuesPerProduct;j++){
+                temp = temp + tempList.get(j);
+            }writer.println(temp);
         }
     }
 
