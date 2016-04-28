@@ -126,7 +126,7 @@ public class Products {
         String temp;
         int i=0;
         ProductNumber=0;
-        while(s.hasNext()){
+        while(true){
             if(name==s.next()){
                 stock=s.nextInt();
                 minAmount=s.nextInt();
@@ -135,15 +135,20 @@ public class Products {
                 break;
             }
             else{
-                //amount:
-                temp=s.next();
-                //minimum amount:
-                temp=s.next();
-                //unit price:
-                temp=s.next();
-                //supplier price:
-                temp=s.next();
+                //moves past current product that does not have the same name as the 
+                
+                //this for loop works through the redunant values of the product that does not match
+                for(int k = 0; k<(valuesPerProduct-1); k++){
+                    temp=s.next();
+                }
+                
+                //updates product number
                 ProductNumber=ProductNumber+1;
+            }
+            if(s.hasNext()==false){
+                //by publishing the product it adds it as a new product
+                publishProduct();
+                break;
             }
         }
     }
@@ -177,51 +182,4 @@ public class Products {
             }writer.println(temp);
         }
     }
-
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
-        private void initComponents() {
-
-        jButton3 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jButton3.setText("Finish");
-
-        jList1.setModel(nameOfProduct);
-        jScrollPane1.setViewportView(jList1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(364, 364, 364)
-                .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(353, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(189, 189, 189))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 402, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addContainerGap())
-        );
-
-        pack();
-    }// </editor-fold>                        
-
-    // Variables declaration - do not modify                     
-    private javax.swing.JButton jButton3;
-    private javax.swing.JList jList1;
-    private javax.swing.JScrollPane jScrollPane1;
-    // End of variables declaration                   
 }
