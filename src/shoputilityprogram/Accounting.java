@@ -2,7 +2,7 @@
  * To edit balance and to do other accounting type actions
  * Edited: April 28 by Spencer Secord
  *
- *two f
+ *two function: withdrawal and deposite
  * 
  */
 package shoputilityprogram;
