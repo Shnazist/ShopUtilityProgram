@@ -44,60 +44,71 @@ public class Products {
     static int valuesPerProduct = 5;
     
     //uses the name as the sole input to find an product already in the text file
+    //to make a new product, enter name, supplier price, unit price, stock, minAmount(optional)
     public Products(String n) throws FileNotFoundException{
-        findProducts();
         name=n;
+        
+        //
+        findProducts();
         findValuesForProduct();
     }
     
-    //name, supplier price, unit price, stock, assumes minAmount is zero
-    public Products(String n, double sp, double up, int s) throws IOException{
-        findProducts();
-        name=n;
-        supplierPrice=sp;
-        unitPrice=up;
-        stock=s;
-        minAmount=0;
-        addProduct();
-    }
-    
-    //name, supplier price, unit price, stock, minAmount
-    public Products(String n, double sp, double up, int s, int m) throws IOException{
-        findProducts();
+    //used when you want to add a previously undocumented product
+    public void setNewValues(String n, double sp, double up, int m, int s) throws IOException{
         name=n;
         supplierPrice=sp;
         unitPrice=up;
         stock=s;
         minAmount=m;
-        addProduct();
+        publish();
     }
     
-    //call upon using main 
-    //for example: balance = balance + apples.sell(5)
-    //edits both the object and the balance that is used to call upon it
-    public double sell(int a){
+    //updates the supplier price
+    public void setSupplierPrice(double price) throws FileNotFoundException{
+        supplierPrice=price;
+        publish();
+    }
+    
+    //updates the unit price
+    public void setUnitPrice(double price) throws FileNotFoundException{
+        unitPrice=price;
+        publish();
+    }
+    
+    //corrects the amount of product recorded in stock
+    //notice that this function is much different than the "buy" or "sell" functions as it is 
+    //not intended to be used for purchases/transactions from the supplier or customers,
+    //it is made to correct the stock amount after an in store product count
+    public void correctStockRecord(int s) throws FileNotFoundException{
+        stock=s;
+        publish();
+    }
+    
+    
+    
+    //used to sell an amount of the product
+    //takes the amount of stock sold as an arguement
+    public void sell(int a) throws FileNotFoundException{
         stock = stock-a;
-        return a*unitPrice;
+        double saleRevenue = a*unitPrice;
+        //update balance
+        Accounting localAccounting = new Accounting();
+        localAccounting.deposite(saleRevenue);
+        //update product
+        publish();
     }
     
-    //call upon using main 
-    //for example: balance = balance - apples.buy(7)
-    //edits both the object and the balance that is used to call upon it
-    //returns the cost to buy the products from a supplier as a positive number
-    public double buy(int a){
+    //used to buy more of the product
+    //takes the amount of product bought as an arguement
+    public void buy(int a) throws FileNotFoundException{
         stock = stock+a;
-        return a*supplierPrice;
+        double costOfPurchase = a*supplierPrice;
+        //update balance
+        Accounting localAccounting = new Accounting();
+        localAccounting.deposite(costOfPurchase);
+        //update product
+        publish();
     }
-    
-     public void addProduct() throws IOException{
-         PrintWriter reader = new PrintWriter("Products.txt");
-         reader.print(name+" "+stock+" "+minAmount+" "+unitPrice+" "+supplierPrice);
-    }
-    
-    //finds an estimate of the asset price of all the specific product in stock
-    public double assetEvaluation(){
-        return (stock*(unitPrice+supplierPrice)/2);
-    }    
     
     //this function index's all the products and there properties in the text file 'Products.txt'
     //index's to the 2D arraylist 'products'
@@ -109,7 +120,7 @@ public class Products {
             ArrayList<String> x = new ArrayList<String>();
             
             //this for loop adds all the product information to the arraylist x
-            for(int i = 0; i<ProductNumber; i++){
+            for(int i = 0; i<valuesPerProduct; i++){
             x.add(s.next());
             }
             //add the individual product information to array Products using list x as a of middle step/proxy
@@ -117,10 +128,8 @@ public class Products {
         }
     }
     
-    
-    
-    //Searches the text file for any products that share that name. Uses the values from the text file
-    public void findValuesForProduct() throws FileNotFoundException{
+    //This is a backup(less efficient) version of findValuesForProduct
+    private void findValuesForProductOldFassionWay() throws FileNotFoundException{
         FileReader reader = new FileReader("Products.txt");
         Scanner s = new Scanner(reader);
         String temp;
@@ -146,14 +155,40 @@ public class Products {
                 ProductNumber=ProductNumber+1;
             }
             if(s.hasNext()==false){
-                //by publishing the product it adds it as a new product
-                publishProduct();
+                //because it cannot find the product in the text file, it will make a new product for it
+                publish();
                 break;
             }
         }
     }
     
-    public void publishProduct() throws FileNotFoundException{
+    //Searches the text file for any products that share that name. Uses the values from the text file
+    /*if product being searched does not exist then it calls the publish function, because
+    the product number will be one more than the total number of products excluding the topic product, this means
+    that publish will make the product in a non-ocupied space on the array list products
+    */ 
+    private void findValuesForProduct() throws FileNotFoundException{
+        ProductNumber=0;
+        for(int i = 0; i<products.size();i++){
+            ArrayList<String> tempList = products.get(ProductNumber);
+            if(tempList.get(0)==name){
+                stock=Integer.parseInt(tempList.get(1));
+                minAmount=Integer.parseInt(tempList.get(2));
+                unitPrice=Double.parseDouble(tempList.get(3));
+                supplierPrice=Double.parseDouble(tempList.get(4));
+                break;
+            }
+            //updates product number
+            ProductNumber=ProductNumber+1;
+            }
+        if(ProductNumber>=products.size()){
+            publish();
+        }
+    }
+    
+    
+    //rewrites the text file "Products.txt" with all the changes made
+    private void publish() throws FileNotFoundException{
         ArrayList<String> y = new ArrayList<String>();
         y.add(name);
         y.add(""+stock);

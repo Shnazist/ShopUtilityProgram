@@ -23,7 +23,7 @@ import java.util.Scanner;
 public class Accounting {
     
     //function for making a withdraw out of the shop balance
-    public void withdrawal(int i) throws FileNotFoundException{
+    public void withdrawal(double i) throws FileNotFoundException{
         FileReader reader = new FileReader("Balance.txt");
         Scanner s = new Scanner(reader);
         double oldBalance = s.nextDouble();
@@ -61,7 +61,7 @@ public class Accounting {
     
     
     //function for making a deposite into the shop's balance
-    public void deposite(int i) throws FileNotFoundException{
+    public void deposite(double i) throws FileNotFoundException{
         FileReader reader = new FileReader("Balance.txt");
         Scanner s = new Scanner(reader);
         double oldBalance = s.nextDouble();
