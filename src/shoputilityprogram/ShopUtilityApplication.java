@@ -25,6 +25,10 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     String department;
     int windowNumber;
     double cost = 0.00;
+    double howMuchNumberValue;
+    int currentTab;
+    
+    
     
     public ShopUtilityApplication() {
         initComponents();
@@ -66,8 +70,6 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
         editUnitPriceLabel = new javax.swing.JLabel();
         editMinStockLabel = new javax.swing.JLabel();
         editDone = new javax.swing.JButton();
-        editDepartmentLabel = new javax.swing.JLabel();
-        departmentOfEditProduct = new javax.swing.JComboBox<>();
         supplierPriceOfEditProduct = new javax.swing.JSpinner(new SpinnerNumberModel(0, 0.00, 1000, 0.05));
         unitPriceOfEditProduct = new javax.swing.JSpinner(new SpinnerNumberModel(0, 0.00, 1000, 0.05));
         minStockOfEditProduct = new javax.swing.JSpinner(new SpinnerNumberModel(0, 0, 1000, 1));
@@ -77,7 +79,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
         purchaseAmountWindow = new javax.swing.JDialog();
         purchaseAmount = new javax.swing.JPanel();
         howMuchTitle = new javax.swing.JLabel();
-        howMuchNumber = new javax.swing.JSpinner();
+        howMuchNumber = new javax.swing.JSpinner(new SpinnerNumberModel(0, 0, 1000, 1));
         howMuchAmountLabel = new javax.swing.JLabel();
         howMuchDone = new javax.swing.JButton();
         mainScreen = new javax.swing.JPanel();
@@ -135,6 +137,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
         addNew = new javax.swing.JButton();
         goBack = new javax.swing.JButton();
         costTotal = new javax.swing.JTextField();
+        costTotal.setEditable(false);
         costTotalLabel = new javax.swing.JLabel();
 
         addNewProductWindow.setPreferredSize(new java.awt.Dimension(350, 500));
@@ -169,7 +172,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
         departmentLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         departmentLabel.setText("Department:");
 
-        departmentOfAddProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bakery", "Dairy", "Meat", "Sea Food", "Frozen", "Canned Food", "Fruits and Veggies", "Utilities", "Beverages", "Dry food" }));
+        departmentOfAddProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FruitsNVeggies", "Bakery", "Dairy", "Meat", "Sea Food", "Frozen", "Canned Food", "Utilities", "Beverages", "Dry food" }));
 
         JFormattedTextField supplierPriceTxt = ((JSpinner.NumberEditor) supplierPriceOfAddProduct.getEditor()).getTextField();
         ((NumberFormatter) supplierPriceTxt.getFormatter()).setAllowsInvalid(false);
@@ -287,11 +290,6 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
         );
 
         editInfoWindow.setPreferredSize(new java.awt.Dimension(350, 500));
-        editInfoWindow.addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                editInfoWindowWindowActivated(evt);
-            }
-        });
 
         editInfo.setPreferredSize(new java.awt.Dimension(350, 500));
 
@@ -320,24 +318,19 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
             }
         });
 
-        editDepartmentLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        editDepartmentLabel.setText("Department:");
-
-        departmentOfEditProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bakery", "Dairy", "Meat", "Sea Food", "Frozen", "Canned Food", "Fruits and Veggies", "Utilities", "Beverages", "Dry food" }));
-
-        JFormattedTextField editSupplierPriceTxt = ((JSpinner.NumberEditor) supplierPriceOfAddProduct.getEditor()).getTextField();
+        JFormattedTextField editSupplierPriceTxt = ((JSpinner.NumberEditor) supplierPriceOfEditProduct.getEditor()).getTextField();
         ((NumberFormatter) editSupplierPriceTxt.getFormatter()).setAllowsInvalid(false);
         supplierPriceOfEditProduct.setPreferredSize(new java.awt.Dimension(6, 26));
 
-        JFormattedTextField editUnitPriceTxt = ((JSpinner.NumberEditor) unitPriceOfAddProduct.getEditor()).getTextField();
+        JFormattedTextField editUnitPriceTxt = ((JSpinner.NumberEditor) unitPriceOfEditProduct.getEditor()).getTextField();
         ((NumberFormatter) editUnitPriceTxt.getFormatter()).setAllowsInvalid(false);
         unitPriceOfEditProduct.setPreferredSize(new java.awt.Dimension(6, 26));
 
-        JFormattedTextField editMinStockTxt = ((JSpinner.NumberEditor) minStockOfAddProduct.getEditor()).getTextField();
+        JFormattedTextField editMinStockTxt = ((JSpinner.NumberEditor) minStockOfEditProduct.getEditor()).getTextField();
         ((NumberFormatter) editMinStockTxt.getFormatter()).setAllowsInvalid(false);
         minStockOfEditProduct.setPreferredSize(new java.awt.Dimension(6, 26));
 
-        JFormattedTextField editAmountTxt = ((JSpinner.NumberEditor) amountOfAddProduct.getEditor()).getTextField();
+        JFormattedTextField editAmountTxt = ((JSpinner.NumberEditor) amountOfEditProduct.getEditor()).getTextField();
         ((NumberFormatter) editAmountTxt.getFormatter()).setAllowsInvalid(false);
         amountOfEditProduct.setPreferredSize(new java.awt.Dimension(6, 26));
 
@@ -345,10 +338,6 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
         editInfo.setLayout(editInfoLayout);
         editInfoLayout.setHorizontalGroup(
             editInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editInfoLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(editDone, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(119, 119, 119))
             .addGroup(editInfoLayout.createSequentialGroup()
                 .addGroup(editInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(editInfoLayout.createSequentialGroup()
@@ -363,13 +352,9 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(nameOfEditProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(editInfoLayout.createSequentialGroup()
-                                .addGroup(editInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(editSupplierPriceLabel)
-                                    .addComponent(editDepartmentLabel))
+                                .addComponent(editSupplierPriceLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(editInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(departmentOfEditProduct, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(supplierPriceOfEditProduct, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(supplierPriceOfEditProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(editInfoLayout.createSequentialGroup()
                                 .addComponent(editUnitPriceLabel)
                                 .addGap(133, 133, 133)
@@ -382,6 +367,10 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
                         .addGap(53, 53, 53)
                         .addComponent(editYourInfo)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editInfoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(editDone, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(121, 121, 121))
         );
         editInfoLayout.setVerticalGroup(
             editInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,13 +396,9 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
                 .addGroup(editInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editSupplierPriceLabel)
                     .addComponent(supplierPriceOfEditProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(editInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editDepartmentLabel)
-                    .addComponent(departmentOfEditProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addComponent(editDone, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(47, 47, 47))
         );
 
         javax.swing.GroupLayout editInfoWindowLayout = new javax.swing.GroupLayout(editInfoWindow.getContentPane());
@@ -429,8 +414,8 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
             editInfoWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editInfoWindowLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(editInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(editInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         purchaseAmountWindow.setPreferredSize(new java.awt.Dimension(393, 160));
@@ -439,6 +424,10 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
 
         howMuchTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         howMuchTitle.setText("How Much Do You Want?");
+
+        JFormattedTextField howMuchNumberTxt = ((JSpinner.NumberEditor) howMuchNumber.getEditor()).getTextField();
+        ((NumberFormatter) howMuchNumberTxt.getFormatter()).setAllowsInvalid(false);
+        howMuchNumber.setPreferredSize(new java.awt.Dimension(6, 26));
 
         howMuchAmountLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         howMuchAmountLabel.setText("Amount:");
@@ -1148,7 +1137,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
                         .addComponent(costTotalLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(productContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1234,6 +1223,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_goBackActionPerformed
 
     private void fruitsNVeggiesButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fruitsNVeggiesButton1ActionPerformed
+        currentTab = 0;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1246,6 +1236,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_fruitsNVeggiesButton1ActionPerformed
 
     private void fruitsNVeggiesButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fruitsNVeggiesButton2ActionPerformed
+        currentTab = 0;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1258,6 +1249,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_fruitsNVeggiesButton2ActionPerformed
 
     private void fruitsNVeggiesButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fruitsNVeggiesButton3ActionPerformed
+        currentTab = 0;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1270,6 +1262,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_fruitsNVeggiesButton3ActionPerformed
 
     private void fruitsNVeggiesButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fruitsNVeggiesButton4ActionPerformed
+        currentTab = 0;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1282,6 +1275,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_fruitsNVeggiesButton4ActionPerformed
 
     private void bakeryButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bakeryButton1ActionPerformed
+        currentTab = 1;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1294,6 +1288,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_bakeryButton1ActionPerformed
 
     private void bakeryButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bakeryButton2ActionPerformed
+        currentTab = 1;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1306,6 +1301,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_bakeryButton2ActionPerformed
 
     private void bakeryButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bakeryButton3ActionPerformed
+        currentTab = 1;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1318,6 +1314,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_bakeryButton3ActionPerformed
 
     private void bakeryButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bakeryButton4ActionPerformed
+        currentTab = 1;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1330,6 +1327,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_bakeryButton4ActionPerformed
 
     private void dairyButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dairyButton1ActionPerformed
+        currentTab = 2;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1342,6 +1340,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_dairyButton1ActionPerformed
 
     private void dairyButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dairyButton2ActionPerformed
+        currentTab = 2;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1354,6 +1353,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_dairyButton2ActionPerformed
 
     private void dairyButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dairyButton3ActionPerformed
+        currentTab = 2;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1366,6 +1366,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_dairyButton3ActionPerformed
 
     private void dairyButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dairyButton4ActionPerformed
+        currentTab = 2;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1378,6 +1379,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_dairyButton4ActionPerformed
 
     private void meatButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meatButton1ActionPerformed
+        currentTab = 3;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1390,6 +1392,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_meatButton1ActionPerformed
 
     private void meatButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meatButton2ActionPerformed
+        currentTab = 3;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1402,6 +1405,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_meatButton2ActionPerformed
 
     private void meatButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meatButton3ActionPerformed
+        currentTab = 3;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1414,6 +1418,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_meatButton3ActionPerformed
 
     private void meatButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meatButton4ActionPerformed
+        currentTab = 3;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1426,6 +1431,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_meatButton4ActionPerformed
 
     private void seaFoodButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seaFoodButton1ActionPerformed
+        currentTab = 4;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1438,6 +1444,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_seaFoodButton1ActionPerformed
 
     private void seaFoodButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seaFoodButton2ActionPerformed
+        currentTab = 4;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1450,6 +1457,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_seaFoodButton2ActionPerformed
 
     private void seaFoodButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seaFoodButton3ActionPerformed
+        currentTab = 4;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1462,6 +1470,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_seaFoodButton3ActionPerformed
 
     private void seaFoodButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seaFoodButton4ActionPerformed
+        currentTab = 4;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1474,6 +1483,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_seaFoodButton4ActionPerformed
 
     private void frozenButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frozenButton1ActionPerformed
+        currentTab = 5;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1486,6 +1496,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_frozenButton1ActionPerformed
 
     private void frozenButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frozenButton2ActionPerformed
+        currentTab = 5;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1498,6 +1509,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_frozenButton2ActionPerformed
 
     private void frozenButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frozenButton3ActionPerformed
+        currentTab = 5;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1510,6 +1522,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_frozenButton3ActionPerformed
 
     private void frozenButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frozenButton4ActionPerformed
+        currentTab = 5;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1522,6 +1535,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_frozenButton4ActionPerformed
 
     private void dryFoodButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dryFoodButton1ActionPerformed
+        currentTab = 6;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1534,6 +1548,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_dryFoodButton1ActionPerformed
 
     private void dryFoodButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dryFoodButton2ActionPerformed
+        currentTab = 6;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1546,6 +1561,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_dryFoodButton2ActionPerformed
 
     private void dryFoodButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dryFoodButton3ActionPerformed
+        currentTab = 6;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1558,6 +1574,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_dryFoodButton3ActionPerformed
 
     private void dryFoodButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dryFoodButton4ActionPerformed
+        currentTab = 6;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1570,6 +1587,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_dryFoodButton4ActionPerformed
 
     private void beveragesButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beveragesButton1ActionPerformed
+        currentTab = 7;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1582,6 +1600,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_beveragesButton1ActionPerformed
 
     private void beveragesButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beveragesButton2ActionPerformed
+        currentTab = 7;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1594,6 +1613,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_beveragesButton2ActionPerformed
 
     private void beveragesButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beveragesButton3ActionPerformed
+        currentTab = 7;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1606,6 +1626,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_beveragesButton3ActionPerformed
 
     private void beveragesButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beveragesButton4ActionPerformed
+        currentTab = 7;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1618,6 +1639,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_beveragesButton4ActionPerformed
 
     private void utilitiesButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utilitiesButton1ActionPerformed
+        currentTab = 8;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1630,6 +1652,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_utilitiesButton1ActionPerformed
 
     private void utilitiesButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utilitiesButton2ActionPerformed
+        currentTab = 8;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1642,6 +1665,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_utilitiesButton2ActionPerformed
 
     private void utilitiesButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utilitiesButton3ActionPerformed
+        currentTab = 8;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1654,6 +1678,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_utilitiesButton3ActionPerformed
 
     private void utilitiesButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utilitiesButton4ActionPerformed
+        currentTab = 8;
         if(windowNumber == 0){
             purchaseAmountWindow.setSize(purchaseAmountWindow.getPreferredSize());
             purchaseAmountWindow.setVisible(true);
@@ -1665,17 +1690,16 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_utilitiesButton4ActionPerformed
 
-    private void editInfoWindowWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_editInfoWindowWindowActivated
-        nameOfEditProduct.setText(fruitsNVeggiesButton1.getText());
-        //departmentOfEditProduct.setSelectedItem(departmentOfAddProduct.getSelectedItem());
-        departmentOfEditProduct.setEnabled(false);
-    }//GEN-LAST:event_editInfoWindowWindowActivated
-
     private void howMuchDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_howMuchDoneActionPerformed
+        howMuchNumberValue = (double)howMuchNumber.getValue();
         purchaseAmountWindow.setVisible(false);
     }//GEN-LAST:event_howMuchDoneActionPerformed
 
     private void editDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editDoneActionPerformed
+        amount = (int)amountOfEditProduct.getValue();
+        minStock = (int)minStockOfEditProduct.getValue();
+        unitPrice = (double)unitPriceOfEditProduct.getValue();
+        supplierPrice = (double)supplierPriceOfEditProduct.getValue();
         editInfoWindow.setVisible(false);
     }//GEN-LAST:event_editDoneActionPerformed
 
@@ -1752,7 +1776,6 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     private javax.swing.JButton dairyButton4;
     private javax.swing.JLabel departmentLabel;
     private javax.swing.JComboBox<String> departmentOfAddProduct;
-    private javax.swing.JComboBox<String> departmentOfEditProduct;
     private javax.swing.JButton done;
     private javax.swing.JPanel dryFood;
     private javax.swing.JButton dryFoodButton1;
@@ -1760,7 +1783,6 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
     private javax.swing.JButton dryFoodButton3;
     private javax.swing.JButton dryFoodButton4;
     private javax.swing.JLabel editAmountLabel;
-    private javax.swing.JLabel editDepartmentLabel;
     private javax.swing.JButton editDone;
     private javax.swing.JPanel editInfo;
     private javax.swing.JDialog editInfoWindow;
