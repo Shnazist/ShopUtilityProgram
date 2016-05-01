@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-//april 25 morning time Islam
+//april 30 Islam
 package shoputilityprogram;
 
 import javax.swing.JFormattedTextField;
@@ -1667,7 +1667,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
 
     private void editInfoWindowWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_editInfoWindowWindowActivated
         nameOfEditProduct.setText(fruitsNVeggiesButton1.getText());
-        ////departmentOfEditProduct.setSelectedItem(departmentOfAddProduct.getSelectedItem());
+        //departmentOfEditProduct.setSelectedItem(departmentOfAddProduct.getSelectedItem());
         departmentOfEditProduct.setEnabled(false);
     }//GEN-LAST:event_editInfoWindowWindowActivated
 
