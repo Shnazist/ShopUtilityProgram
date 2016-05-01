@@ -1667,7 +1667,7 @@ public class ShopUtilityApplication extends javax.swing.JFrame {
 
     private void editInfoWindowWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_editInfoWindowWindowActivated
         nameOfEditProduct.setText(fruitsNVeggiesButton1.getText());
-        //departmentOfEditProduct.setSelectedItem(departmentOfAddProduct.getSelectedItem());
+        ////departmentOfEditProduct.setSelectedItem(departmentOfAddProduct.getSelectedItem());
         departmentOfEditProduct.setEnabled(false);
     }//GEN-LAST:event_editInfoWindowWindowActivated
 
