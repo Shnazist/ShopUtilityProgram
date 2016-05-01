@@ -192,7 +192,6 @@ public class Products {
     
     //rewrites the text file "Products.txt" with all the changes made
     private void publish() throws FileNotFoundException{
-        printAllProducts();
         ArrayList<String> y = new ArrayList<String>();
         y.add(name);
         y.add(""+stock);
@@ -205,10 +204,6 @@ public class Products {
                 products.add(y);
                 System.out.println("new product added: "+name);
             }
-        System.out.println();
-        printAllProducts();
-        System.out.println();
-        System.out.println();
         File file = new File("Products.txt");
 
         if(file.exists()){file.delete();
